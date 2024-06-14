@@ -22,21 +22,21 @@ namespace ClarkCodingChallenge.Controllers
             Contact contact = new Contact();
             if (string.IsNullOrEmpty(Request.Form["LastName"]))
             {
-                return this.RedirectToAction("Index");
+                return View("Index");
             }
             contact.lastName = Request.Form["LastName"];
             if (string.IsNullOrEmpty(Request.Form["FirstName"]))
             {
-                return this.RedirectToAction("Index");
+                return View("Index");
             }
             contact.firstName = Request.Form["FirstName"];
             if (!ContactsService.IsValidEmail(Request.Form["Email"]))
             {
-                return this.RedirectToAction("Index");
+                return View("Index");
             }
             contact.emailAddress = Request.Form["Email"];
             ContactsDataAccess.AddContact(contact);
-            return RedirectToAction("Success");
+            return View("Success");
         }
 
         /* GETs all entries of a mailing list under a given last name. Optional SortFlag

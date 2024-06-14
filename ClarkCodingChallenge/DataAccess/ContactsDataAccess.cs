@@ -23,20 +23,24 @@ namespace ClarkCodingChallenge.DataAccess
         {
             if (string.IsNullOrEmpty(lastName))
             {
-                if (sortFlag == 1)
+                if (sortFlag == 1) {
                     return contacts;
-                else
+                }
+                else {
                     contacts.Reverse();
-                return contacts;
+                    return contacts;
+                }
             }
 
             List<Contact> requestedContacts = new List<Contact>();
             requestedContacts = contacts.FindAll(x => x.lastName == lastName);
-            if (sortFlag == 1)
+            if (sortFlag == 1) {
                 return requestedContacts;
-            else
+            }
+            else {
                 requestedContacts.Reverse();
                 return requestedContacts;
+            }
         }
     }
 }
