@@ -1,3 +1,4 @@
+using ClarkCodingChallenge.BusinessLogic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ClarkCodingChallenge.Tests.BusinessLogicTests
@@ -6,8 +7,11 @@ namespace ClarkCodingChallenge.Tests.BusinessLogicTests
     public class ContactsBusinessLogicTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestEmailCheck()
         {
+            var goodResult = ContactsService.IsValidEmail("jsmith@gmail.com");
+            var badResult = ContactsService.IsValidEmail("abcdefghi");
+            Assert.AreNotEqual(goodResult, badResult);
         }
     }
 }

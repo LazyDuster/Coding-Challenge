@@ -20,20 +20,31 @@ namespace ClarkCodingChallenge.Controllers
         public ActionResult Submit()
         {
             Contact contact = new Contact();
+            string errorMessage = "";
+            bool faulty = false;
             if (string.IsNullOrEmpty(Request.Form["LastName"]))
             {
-                return View("Index");
+                errorMessage += "Last Name cannot be empty.";
+                faulty = true;
             }
-            contact.lastName = Request.Form["LastName"];
             if (string.IsNullOrEmpty(Request.Form["FirstName"]))
             {
-                return View("Index");
+                errorMessage += "First Name cannot be empty.";
+                faulty = true;
             }
-            contact.firstName = Request.Form["FirstName"];
             if (!ContactsService.IsValidEmail(Request.Form["Email"]))
             {
+                errorMessage += "Invalid email address.";
+                faulty = true;
+            }
+            if (faulty)
+            {
+                ViewBag.errorMessage = errorMessage;
                 return View("Index");
             }
+
+            contact.lastName = Request.Form["LastName"];
+            contact.firstName = Request.Form["FirstName"];
             contact.emailAddress = Request.Form["Email"];
             ContactsDataAccess.AddContact(contact);
             return View("Success");

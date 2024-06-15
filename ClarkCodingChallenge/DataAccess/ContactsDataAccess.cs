@@ -7,6 +7,8 @@ namespace ClarkCodingChallenge.DataAccess
     {
         private static List<Contact> contacts = new List<Contact>();
 
+        /* Adds a contact submitted by a user then sorts it after.
+         */
         public static void AddContact(Contact c)
         {
             contacts.Add(c);
@@ -21,6 +23,7 @@ namespace ClarkCodingChallenge.DataAccess
          */
         public static List<Contact> GetContacts(string lastName, int sortFlag)
         {
+            /* Short circuit if not given any names to specifically return. */
             if (string.IsNullOrEmpty(lastName))
             {
                 if (sortFlag == 1) {

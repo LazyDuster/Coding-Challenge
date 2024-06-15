@@ -1,20 +1,25 @@
-﻿@{
+﻿@model Contact
+@{
     ViewData["Title"] = "Contacts Page";
 }
-@*
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-</div>
-*@
-<form method="post" asp-action="Submit">
-    <div>
-        <label for="LastName">Last Name:</label>
-        <input type="text" name="LastName" /><br />
-        <label for="FirstName">First Name:</label>
-        <input type="text" name="FirstName" /><br />
-        <label for="Email">Email:</label>
-        <input type="text" name="Email"/><br />
-        <input type="submit" value="Submit" class="btn"/>
-        <label for="test"></label>
-    </div>
-</form>
+
+<body>
+    @if (@ViewBag.errorMessage != null)
+    {
+        <div class="alert">
+            <strong>@ViewBag.errorMessage</strong>
+        </div>
+    }
+    <form method="post" asp-action="Submit">
+        <div>
+            <label for="LastName">Last Name:</label>
+            <input type="text" name="LastName" /><br />
+            <label for="FirstName">First Name:</label>
+            <input type="text" name="FirstName" /><br />
+            <label for="Email">Email:</label>
+            <input type="text" name="Email"/><br />
+            <input type="submit" value="Submit" class="btn"/>
+            <label for="test"></label>
+        </div>
+    </form>
+</body>
